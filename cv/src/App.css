@@ -1,0 +1,36 @@
+/* make a css for all my react app */
+body{
+    background-color: antiquewhite;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.card{
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px ;
+    overflow: hidden;
+    width: 300px;
+    img{
+        width: 100%;
+    }
+    p{
+        font-size: 20px;
+        font-weight: 600;
+        
+    }
+}
+
+.skills{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:baseline;
+    column-gap: 40px;
+    row-gap: 10px;
+    width: 100%;
+    .skill{
+        width: 35%;
+        border-radius: 10px ; 
+        padding: 10px;
+        color: white;
+    }
+}

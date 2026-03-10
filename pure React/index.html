@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React 1</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+<body>
+
+
+    <!-- Extremely popular , declarative , component-based , state driven ,  javascript library for building (user interface => UI) created by facebook (meta) -->
+    
+    <div id="root"></div>
+
+
+
+
+
+
+
+
+
+
+    <!-- Pure React -->
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" >
+
+        // let date = new Date().toLocaleTimeString() // the time 
+        // useState
+
+        
+        // the hooks can only be called in funtion component => return JSX
+
+
+        function App(){
+            
+            let [date , setDate] =  React.useState(new Date().toLocaleTimeString()) 
+
+            React.useEffect( () => {
+
+
+                setInterval( () => {
+                    setDate( new Date().toLocaleTimeString() )
+                }  , 1000 )
+
+            } , [] )
+
+
+            return React.createElement("div" , null , `hello world !  ${date} ` )
+
+            // useEffect for NOW => to call a function once the app open 
+            
+
+        }
+
+        const container = document.getElementById("root");
+        const root = ReactDOM.createRoot(container);
+        root.render(<App/>);
+    </script>
+
+<!-- don't forget download Node -->
+
+</body>
+</html>
