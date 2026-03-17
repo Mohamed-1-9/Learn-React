@@ -54,13 +54,18 @@ function Menu(){
     return <main>
       
   {/* props => name="value" */}
-        <Pizzas name={pizzaData[0].name} ingredients={pizzaData[0].ingredients}   img={pizzaData[0].photoName}  />
+        {/* <Pizzas name={pizzaData[0].name} ingredients={pizzaData[0].ingredients}   img={pizzaData[0].photoName}  />
         <Pizzas name={pizzaData[1].name} ingredients={pizzaData[1].ingredients}   img={pizzaData[1].photoName}  />
         <Pizzas name={pizzaData[2].name} ingredients={pizzaData[2].ingredients}   img={pizzaData[2].photoName}  />
         <Pizzas name={pizzaData[3].name} ingredients={pizzaData[3].ingredients}   img={pizzaData[3].photoName}  />
-        <Pizzas name={pizzaData[4].name} ingredients={pizzaData[4].ingredients}   img={pizzaData[4].photoName}  />
-        <Pizzas name={pizzaData[5].name} ingredients={pizzaData[5].ingredients}   img={pizzaData[5].photoName}  />
-      
+        <Pizzas name={pizzaData[4].name} ingredients={pizzaData[4].ingredients}   img={pizzaData[4].photoName}  /> */}
+      {
+        pizzaData.map( ( Pizza ) => {  
+
+          return <Pizzas name={Pizza.name} ingredients={Pizza.ingredients}  key={Pizza.name}   img={Pizza.photoName}  />
+
+          } )
+      }
     </main>
 }
 
