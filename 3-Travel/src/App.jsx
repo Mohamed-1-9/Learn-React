@@ -1,4 +1,5 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types */ 
+// don't worry about that
 
 import { useState } from 'react'
 import './App.css'
