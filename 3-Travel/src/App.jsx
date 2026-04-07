@@ -5,13 +5,11 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  let [Items,setItems] = useState([ {id : 1 , describtion :  "bag" , packed : true , count : 1 } , 
-  {id : 2 , describtion : "Socks" , packed : false , count : 2}
-  ])
+  let [Items,setItems] = useState([])
   return <>
     <Logo/>
     <Form setItems={setItems} />
-    <List Items={Items} />
+    <List Items={Items } setItems={setItems}  />
     <Footer Items={Items} />
   </>
 }
@@ -29,15 +27,18 @@ function Form({setItems}){
   
   let [Option , setOption] = useState(1)
   function handleSubmit(){
-    // setItems( (oldValue) => oldValue.push() )
+    // setItems( (oldValue) => oldValue.push() ) => bec. push function add on the same addres so the react don't want 
+    // this it wants new value
 
 
     let newItem ={id:  Math.random()  , describtion  : inputValue , packed : false , count : Option }
     setItems( oldValue => [...oldValue , newItem] )
+    setInputValue("")
+    setOption(1)
     
-    // console.log(Items);
     
   }
+
   return <div className='form'>
     <span>What do you need for the trip ❤ ?</span>
     <select value={Option} onChange={ (e)=> { setOption(e.target.value) }}>
@@ -51,21 +52,52 @@ function Form({setItems}){
 
 
 
-function List({Items}){
+function List({Items,setItems}){
   return <div className='list' >
     
-    {Items.map( (item) => { return <Item item={item} Items={Items} key={item.id} /> } )}
+    {Items.map( (item) => { return <Item item={item} setItems={setItems} Items={Items} key={item.id} /> } )}
     
     
   </div>
 }
 
 
-function Item({item}){
+function Item({item,Items,setItems}){
 
-return <div  style={ !item.packed ? {} : {textDecoration : "line-through" } } className="item"> {item.count} {item.describtion} <span  className='delete'>❌</span></div>
+  function onDelete(id){
+
+  let newarr=  Items.filter( (element) =>  element.id !== id   ) // return array
+  setItems(newarr)
+
+  }
+
+  function onPacked(id){
+
+    setItems( items.map( (item) => {
+
+      if ( item.id == id ){
+        return {...item, packed : !item.packed }
+      }else{
+        return item;
+      }
+    } ) )
+
+  }
+
+
+
+return (<div   className="item">
+  <input type="checkbox" value={item.packed} onClick={()=> onPacked(item.id)} />
+  <span style={ !item.packed ? {} : {textDecoration : "line-through" } }> {item.count} {item.describtion}</span> 
+   <button onClick={ ()=>{onDelete(item.id)} }  className='delete'>❌</button>
+   </div>)
+  
 }
+
 function Footer({Items}){
-  return <div className='footer'>You have {Items.length} of items <span className='percentage'> 66% are Packed </span> </div>
+  let 
+  // let pers = / items.length * 100
+
+  return <div className='footer'>You have {Items.length} of items <span className='percentage'>   are Packed </span> </div>
 }
 export default App
